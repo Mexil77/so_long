@@ -6,12 +6,13 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 13:29:50 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/06 18:22:05 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/13 19:36:28 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include "get_next_line.h"
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -21,7 +22,6 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-/*here list all used functions*/
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
