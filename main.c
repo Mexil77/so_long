@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/13 20:47:04 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/13 23:12:10 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,56 @@ void	leak(void)
 	system("leaks so_long");
 }
 
-int	main(int argc, char const *argv[])
+size_t	ft_calcareaval(int fd)
 {
-	int		fd;
 	char	*line;
-	size_t	i;
+	size_t	h;
+	size_t	w;
+	size_t	aux;
 
-	fd = open(argv[1], O_RDWR);
-	if (fd < 0)
-		printf("fd : %d\n", fd);
-	i = 1;
+	h = 0;
 	line = get_next_line(fd);
-	while (line)
+	w = ft_strlen(line);
+	if (ft_findchar(line, '\n'))
+		w--;
+	aux = w;
+	while (line && ++h)
 	{
-		printf("/* %zu */%s", i, line);
+		if (aux != w && line)
+			return (0);
 		free (line);
 		line = get_next_line(fd);
-		i++;
+		aux = ft_strlen(line);
+		if (ft_findchar(line, '\n'))
+			aux--;
 	}
+	if (h < 3 || w < 3)
+		return (0);
+	return (h * w);
+}
+
+int	main(int argc, char const *argv[])
+{
+	size_t	area;
+	int		fd;
+	//char	**mapa;
+
+	if (argc != 2)
+	{
+		printf("Error\n");
+		return (0);
+	}
+	fd = open(argv[1], O_RDWR);
+	if (fd < 0)
+		printf("Error de lectura\n");
+	area = ft_calcareaval(fd);
 	close (fd);
-	printf("/* %zu */%s", i, line);
-	printf("%d\n", argc);
+	if (!area)
+	{
+		printf("Error\n");
+		return (0);
+	}
+	printf("%zu\n", area);
 	//atexit (leak);
 	return (0);
 }
