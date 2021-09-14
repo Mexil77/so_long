@@ -6,26 +6,26 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/13 15:42:35 by emgarcia          #+#    #+#              #
-#    Updated: 2021/09/13 16:58:55 by emgarcia         ###   ########.fr        #
+#    Updated: 2021/09/14 22:27:15 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= main.c
+SRCS	= ft_map_utils.c main.c
 LIBFT	= libft/libft.a
 OBJS	= ${SRCS:.c=.o}
 NAME	= so_long
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -Imlx
 RM		= rm -rf
 
 all: ${NAME}
 
 %.o: %.c
-	@${CC} ${CFLAGS} -c $< -o $@
+	@${CC} ${CFLAGS} -Imlx -c $< -o $@
 
 ${NAME}: ${OBJS}
 	@make -C libft
-	@${CC} ${CFLAGS} ${LIBFT} ${OBJS} -o ${NAME}
+	@${CC} ${CFLAGS} ${LIBFT} ${OBJS} -Iincludes -lmlx -framework OpenGL -framework AppKit -o ${NAME}
 
 clean:
 	@cd libft ; make fclean

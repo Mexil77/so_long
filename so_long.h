@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:47 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/13 19:00:21 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/14 19:38:22 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,8 @@
 # include <stdio.h>
 # include <string.h>
 # include <fcntl.h>
+# include <mlx.h>
+
+char	**ft_makemap(char const *file);
 
 #endif

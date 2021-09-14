@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/13 23:12:10 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/14 22:30:27 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,56 +17,47 @@ void	leak(void)
 	system("leaks so_long");
 }
 
-size_t	ft_calcareaval(int fd)
+void	ft_freemap(char **map)
 {
-	char	*line;
-	size_t	h;
-	size_t	w;
-	size_t	aux;
+	size_t	i;
 
-	h = 0;
-	line = get_next_line(fd);
-	w = ft_strlen(line);
-	if (ft_findchar(line, '\n'))
-		w--;
-	aux = w;
-	while (line && ++h)
-	{
-		if (aux != w && line)
-			return (0);
-		free (line);
-		line = get_next_line(fd);
-		aux = ft_strlen(line);
-		if (ft_findchar(line, '\n'))
-			aux--;
-	}
-	if (h < 3 || w < 3)
-		return (0);
-	return (h * w);
+	i = -1;
+	while (map[++i])
+		free(map[i]);
+	free(map);
+}
+
+void	ft_printmap(char **map)
+{
+	size_t	i;
+
+	i = -1;
+	while (map[++i])
+		printf("map[%zu] : %s\n", i, map[i]);
 }
 
 int	main(int argc, char const *argv[])
 {
-	size_t	area;
-	int		fd;
-	//char	**mapa;
+	char	**map;
+	void	*id;
+	void	*window;
 
+	//atexit (leak);
 	if (argc != 2)
 	{
 		printf("Error\n");
 		return (0);
 	}
-	fd = open(argv[1], O_RDWR);
-	if (fd < 0)
-		printf("Error de lectura\n");
-	area = ft_calcareaval(fd);
-	close (fd);
-	if (!area)
+	map = ft_makemap(argv[1]);
+	if (!map)
 	{
 		printf("Error\n");
 		return (0);
 	}
-	printf("%zu\n", area);
-	//atexit (leak);
+	id = mlx_init();
+	window = mlx_new_window(id, 500, 200, "Hola");
+	mlx_loop(id);
+	ft_printmap(map);
+	ft_freemap(map);
 	return (0);
 }
