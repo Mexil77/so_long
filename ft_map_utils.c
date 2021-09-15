@@ -6,11 +6,21 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:55:39 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/14 19:25:41 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:32:42 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+size_t	ft_getheight(char **map)
+{
+	size_t	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
 
 size_t	ft_calchighval(int fd)
 {
@@ -35,7 +45,7 @@ size_t	ft_calchighval(int fd)
 		if (ft_findchar(line, '\n'))
 			aux--;
 	}
-	if (h < 3 || w < 3)
+	if (h < 3 || w < 3 || h == w)
 		return (0);
 	return (h);
 }

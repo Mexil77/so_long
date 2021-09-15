@@ -6,11 +6,11 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/13 15:42:35 by emgarcia          #+#    #+#              #
-#    Updated: 2021/09/14 22:27:15 by emgarcia         ###   ########.fr        #
+#    Updated: 2021/09/15 19:13:27 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= ft_map_utils.c main.c
+SRCS	= ft_mymlx.c ft_map_utils.c main.c
 LIBFT	= libft/libft.a
 OBJS	= ${SRCS:.c=.o}
 NAME	= so_long
