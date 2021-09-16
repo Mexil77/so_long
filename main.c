@@ -6,16 +6,11 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/16 19:47:09 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/16 22:35:25 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	leak(void)
-{
-	system("leaks so_long");
-}
 
 int	ft_error(void)
 {
@@ -51,47 +46,8 @@ int	ft_keyhook(int keycode, t_vars *vars)
 		exit(0);
 	}
 	if (keycode || vars)
-	{
 		printf("keycode : %d\n", keycode);
-		printf("Hello from key_hook!\n");
-	}
 	return (0);
-}
-
-void	ft_drawsquare(t_vars vars, size_t y, size_t x, char *imgname, int tile)
-{
-	size_t	i;
-	size_t	j;
-	void	*img;
-
-	i = (tile * y);
-	j = (tile * x);
-	img = mlx_xpm_file_to_image(vars.mlx, imgname, &tile, &tile);
-	mlx_put_image_to_window(vars.mlx, vars.win, img, j, i);
-}
-
-void	ft_drawmap(char **map, int tile, t_vars vars, size_t w, size_t h)
-{
-	size_t	i;
-	size_t	j;
-
-	i = -1;
-	j = -1;
-	while (++i < h)
-	{
-		while (++j < w)
-		{
-			if (map[i][j] == '1')
-				ft_drawsquare(vars, i, j, "./stone32.XPM", tile);
-			if (map[i][j] == '0')
-				ft_drawsquare(vars, i, j, "./grass32.XPM", tile);
-			if (map[i][j] == 'P')
-				ft_drawsquare(vars, i, j, "./ground32.XPM", tile);
-			if (map[i][j] == 'E')
-				ft_drawsquare(vars, i, j, "./water32.XPM", tile);
-		}
-		j = -1;
-	}
 }
 
 int	main(int argc, char const *argv[])
@@ -100,23 +56,25 @@ int	main(int argc, char const *argv[])
 	t_vars	vars;
 	size_t	w;
 	size_t	h;
-	int		tile;
+	t_img	*objs;
 
-	tile = 32;
-	atexit (leak);
 	if (argc != 2)
 		return (ft_error());
 	map = ft_makemap(argv[1]);
 	if (!map)
 		return (ft_error());
 	ft_printmap(map);
-	w = ft_strlen(map[0]) * tile;
-	h = ft_getheight(map) * tile;
+	w = ft_strlen(map[0]) * TILE;
+	h = ft_getheight(map) * TILE;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, w, h, "so_long");
 	if (!vars.win)
 		return (ft_error());
-	ft_drawmap(map, tile, vars, ft_strlen(map[0]), ft_getheight(map));
+	ft_drawmap(map, vars);
+	objs = ft_makeobjs(map);
+	if (!objs)
+		return (ft_error());
+	free (objs);
 	mlx_key_hook(vars.win, ft_keyhook, &vars);
 	ft_freemap(map);
 	mlx_loop(vars.mlx);
