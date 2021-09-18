@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:47 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/18 21:16:04 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/18 23:22:11 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef struct s_vars {
 	void	*mlx;
 	void	*win;
 	char	**map;
+	size_t	*steps;
+	size_t	*score;
+	size_t	*allitems;
 	t_img	*objs;
 }				t_vars;
 

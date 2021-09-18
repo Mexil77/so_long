@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/18 21:24:02 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/18 23:49:05 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,32 @@ void	leak(void)
 	system("leaks so_long");
 }
 
+void	ft_initvalue(t_vars vars)
+{
+	size_t	items;
+	size_t	i;
+
+	items = 0;
+	i = -1;
+	vars.steps = calloc(sizeof(size_t), 1);
+	vars.score = calloc(sizeof(size_t), 1);
+	vars.allitems = calloc(sizeof(size_t), 1);
+	if (vars.score && vars.score && vars.allitems)
+	{
+		while (vars.objs[++i].type)
+			if (vars.objs[++i].type == 'C')
+				items++;
+		*vars.allitems = items;
+	}	
+}
+
 int	main(int argc, char const *argv[])
 {
 	t_vars	vars;
 	size_t	w;
 	size_t	h;
+	size_t	items;
+	size_t	i;
 
 	//atexit(leak);
 	if (argc != 2)
@@ -72,6 +93,19 @@ int	main(int argc, char const *argv[])
 	vars.objs = ft_makeobjs(vars.map, vars);
 	if (!vars.objs)
 		return (ft_error());
+	items = 0;
+	i = -1;
+	vars.steps = calloc(sizeof(size_t), 1);
+	vars.score = calloc(sizeof(size_t), 1);
+	vars.allitems = calloc(sizeof(size_t), 1);
+	if (vars.score && vars.score && vars.allitems)
+	{
+		while (vars.objs[++i].type)
+			if (vars.objs[++i].type == 'C')
+				items++;
+		*vars.allitems = items;
+	}
+	//ft_initvalue(vars);
 	mlx_key_hook(vars.win, ft_keyhook, &vars);
 	mlx_loop(vars.mlx);
 	return (0);

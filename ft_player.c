@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 19:26:40 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/18 21:15:00 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/18 23:52:48 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,20 @@ size_t	ft_isvalidmove(t_vars vars, int move)
 	x = ft_getplayerx(vars.objs);
 	y = ft_getplayery(vars.objs);
 	if (move == 0)
-		if (vars.map[y][x - 1] == '1')
+		if (vars.map[y][x - 1] == '1' ||
+			(vars.map[y][x - 1] == 'E' && vars.score < vars.allitems))
 			return (0);
 	if (move == 1)
-		if (vars.map[y + 1][x] == '1')
+		if (vars.map[y + 1][x] == '1' ||
+			(vars.map[y][x - 1] == 'E' && vars.score < vars.allitems))
 			return (0);
 	if (move == 2)
-		if (vars.map[y][x + 1] == '1')
+		if (vars.map[y][x + 1] == '1' ||
+			(vars.map[y][x - 1] == 'E' && vars.score < vars.allitems))
 			return (0);
 	if (move == 13)
-		if (vars.map[y - 1][x] == '1')
+		if (vars.map[y - 1][x] == '1' ||
+			(vars.map[y][x - 1] == 'E' && vars.score < vars.allitems))
 			return (0);
 	return (1);
 }
@@ -75,7 +79,15 @@ void	ft_moveplayer(t_vars vars, int move)
 		ft_move(vars, move, j, i);
 		j = ft_getplayerx(vars.objs);
 		i = ft_getplayery(vars.objs);
+		if (vars.map[j][i] == 'C')
+		{
+			*vars.score += 1;
+			ft_drawsquare(vars, i, j, "./img/grass32.XPM");
+		}
 		ft_drawsquare(vars, i, j, "./img/worker12x16.XPM");
-		printf("Te puedes mover\n");
+		*vars.steps += 1;
+		printf("Movimientos : %zu\n", *vars.steps);
+		printf("Score : %zu\n", *vars.score);
+		printf("item : %zu\n", *vars.allitems);
 	}
 }
