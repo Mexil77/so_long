@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 20:40:43 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/18 19:17:12 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/19 21:18:53 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ t_img	ft_drawobj(t_vars vars, size_t y, size_t x, char type)
 	if (type == 'P')
 		name = "./img/worker12x16.XPM";
 	if (type == 'E')
-		name = "./img/ground32.XPM";
+		name = "./img/house32.XPM";
+	if (type == 'X')
+		name = "./img/eleph16.XPM";
 	ft_drawsquare(vars, y, x, name);
 	return (imgs);
 }

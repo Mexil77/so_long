@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 19:26:40 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/19 18:36:47 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/19 23:15:39 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,37 +38,38 @@ size_t	ft_isvalidmove(t_vars vars, int move)
 	return (1);
 }
 
-void	ft_move(t_vars vars, int move, size_t x, size_t y)
+void	ft_move(t_vars vars, int move, size_t *x, size_t *y)
 {
 	size_t	i;
 
 	i = ft_getplayerindex(vars.objs);
-	vars.map[y][x] = '0';
+	vars.map[*y][*x] = '0';
 	if (move == 0)
-	{
-		vars.map[y][x - 1] = 'P';
-		vars.objs[i].x = x - 1;
-	}
+		*x -= 1;
 	if (move == 1)
-	{
-		vars.map[y + 1][x] = 'P';
-		vars.objs[i].y = y + 1;
-	}
+		*y += 1;
 	if (move == 2)
-	{
-		vars.map[y][x + 1] = 'P';
-		vars.objs[i].x = x + 1;
-	}
+		*x += 1;
 	if (move == 13)
-	{
-		vars.map[y - 1][x] = 'P';
-		vars.objs[i].y = y - 1;
-	}
+		*y -= 1;
+	if (move % 2 == 0)
+		vars.objs[i].x = *x;
+	else
+		vars.objs[i].y = *y;
+	vars.map[*y][*x] = 'P';
 }
 
 void	ft_win(void)
 {
 	exit(0);
+}
+
+void	ft_destroyitem(t_vars vars, size_t i, size_t j)
+{
+	*vars.score += 1;
+	ft_drawsquare(vars, i, j, "./img/grass32.XPM");
+	ft_drawsquare(vars, 0, 6, "./img/stone32.XPM");
+	mlx_string_put(vars.mlx, vars.win, TILE * 6, 0, 200, ft_itoa(*vars.score));
 }
 
 void	ft_moveplayer(t_vars vars, int move)
@@ -81,19 +82,14 @@ void	ft_moveplayer(t_vars vars, int move)
 		j = ft_getplayerx(vars.objs);
 		i = ft_getplayery(vars.objs);
 		ft_drawsquare(vars, i, j, "./img/grass32.XPM");
-		ft_move(vars, move, j, i);
-		j = ft_getplayerx(vars.objs);
-		i = ft_getplayery(vars.objs);
+		ft_move(vars, move, &j, &i);
 		if (ft_isitem(j, i, vars.objs))
-		{
-			*vars.score += 1;
-			ft_drawsquare(vars, i, j, "./img/grass32.XPM");
-		}
+			ft_destroyitem(vars, i, j);
+		ft_isenemi(j, i, vars.objs);
 		ft_drawsquare(vars, i, j, "./img/worker12x16.XPM");
 		*vars.steps += 1;
-		printf("Movimientos : %zu\n", *vars.steps);
-		printf("Score : %zu\n", *vars.score);
-		printf("item : %zu\n", *vars.allitems);
+		ft_drawsquare(vars, 0, 2, "./img/stone32.XPM");
+		mlx_string_put(vars.mlx, vars.win, 64, 0, 200, ft_itoa(*vars.steps));
 		if (ft_isexit(j, i, vars.objs))
 			ft_win();
 	}

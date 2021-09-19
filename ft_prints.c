@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 22:14:00 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/18 01:39:42 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/19 19:32:29 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,9 @@ void	ft_printobjs(t_img *objs)
 		printf("O[%zu].Y : %zu\n", i + 1, objs[i].y);
 		printf("\n");
 	}
+}
+
+void	leak(void)
+{
+	system("leaks so_long");
 }

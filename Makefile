@@ -6,11 +6,11 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/13 15:42:35 by emgarcia          #+#    #+#              #
-#    Updated: 2021/09/18 21:17:55 by emgarcia         ###   ########.fr        #
+#    Updated: 2021/09/19 23:17:08 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= ft_player2.c ft_player.c ft_draw.c ft_map_utils2.c ft_map_utils.c main.c ft_prints.c
+SRCS	= ft_enemi.c ft_boards.c ft_player2.c ft_player.c ft_draw.c ft_map_utils2.c ft_map_utils.c main.c ft_prints.c
 LIBFT	= libft/libft.a
 OBJS	= ${SRCS:.c=.o}
 NAME	= so_long
