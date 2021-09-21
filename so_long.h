@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:47 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/20 00:00:36 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/21 20:59:43 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <mlx.h>
+# include <time.h>
 
 # ifndef TILE
 #  define TILE 32
@@ -25,6 +26,7 @@
 typedef struct s_img {
 	size_t	x;
 	size_t	y;
+	size_t	sprite;
 	char	type;
 }				t_img;
 
@@ -38,14 +40,14 @@ typedef struct s_vars {
 	t_img	*objs;
 }				t_vars;
 
+void	ft_error(char *str);
 char	**ft_makemap(char const *file);
 size_t	ft_getheight(char **map);
 void	ft_drawmap(char **map, t_vars vars);
-t_img	*ft_makeobjs(char **map, t_vars vars);
+t_img	*ft_makeobjs(char **map);
 size_t	ft_countobjs(char **map);
 void	ft_drawsquare(t_vars vars, size_t y, size_t x, char *imgname);
-t_img	ft_drawobj(t_vars vars, size_t y, size_t x, char type);
-void	ft_dropobjs(char **map, t_img *objs, t_vars vars);
+void	ft_drawobj(t_vars vars, t_img *objs);
 void	ft_moveplayer(t_vars vars, int move);
 size_t	ft_getplayerx(t_img *objs);
 size_t	ft_getplayery(t_img *objs);
@@ -55,6 +57,8 @@ size_t	ft_isexit(size_t x, size_t y, t_img *objs);
 void	ft_printboards(t_vars vars);
 void	ft_isenemi(size_t x, size_t y, t_img *objs);
 void	ft_moveenemi(t_vars vars);
+void	ft_validmap(char **map);
+void	ft_validobjs(t_img *objs);
 
 void	ft_printmap(char **map);
 void	ft_printobjs(t_img *objs);

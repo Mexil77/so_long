@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 20:40:43 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/19 21:18:53 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/21 21:12:20 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,24 @@ void	ft_drawsquare(t_vars vars, size_t y, size_t x, char *imgname)
 	mlx_destroy_image(vars.mlx, img);
 }
 
-t_img	ft_drawobj(t_vars vars, size_t y, size_t x, char type)
+void	ft_drawobj(t_vars vars, t_img *objs)
 {
-	t_img	imgs;
 	char	*name;
+	size_t	i;
 
-	imgs.x = x;
-	imgs.y = y;
-	imgs.type = type;
-	if (type == 'C')
-		name = "./img/cookie15x16.XPM";
-	if (type == 'P')
-		name = "./img/worker12x16.XPM";
-	if (type == 'E')
-		name = "./img/house32.XPM";
-	if (type == 'X')
-		name = "./img/eleph16.XPM";
-	ft_drawsquare(vars, y, x, name);
-	return (imgs);
+	i = -1;
+	while (objs[++i].type)
+	{
+		if (objs[i].type == 'C')
+			name = "./img/item32.XPM";
+		if (objs[i].type == 'P')
+			name = "./img/player1r32.XPM";
+		if (objs[i].type == 'E')
+			name = "./img/house32.XPM";
+		if (objs[i].type == 'X')
+			name = "./img/enemy1l32.XPM";
+		ft_drawsquare(vars, objs[i].y, objs[i].x, name);
+	}
 }
 
 void	ft_drawmap(char **map, t_vars vars)
@@ -65,18 +65,4 @@ void	ft_drawmap(char **map, t_vars vars)
 		}
 		j = -1;
 	}
-}
-
-t_img	*ft_makeobjs(char **map, t_vars vars)
-{
-	t_img	*objs;
-	size_t	numobjs;
-
-	numobjs = ft_countobjs(map);
-	objs = malloc(sizeof(t_img) * (numobjs + 1));
-	if (!objs)
-		return (NULL);
-	objs[numobjs].type = '\0';
-	ft_dropobjs(map, objs, vars);
-	return (objs);
 }

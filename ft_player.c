@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 19:26:40 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/19 23:15:39 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/21 16:43:36 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,35 @@ void	ft_destroyitem(t_vars vars, size_t i, size_t j)
 	mlx_string_put(vars.mlx, vars.win, TILE * 6, 0, 200, ft_itoa(*vars.score));
 }
 
+void	ft_nextspritep(t_vars vars, size_t x, size_t y, int move)
+{
+	size_t	i;
+
+	i = ft_getplayerindex(vars.objs);
+	if (move != 0)
+	{
+		if (vars.objs[i].sprite == 0)
+			ft_drawsquare(vars, x, y, "./img/player2r32.XPM");
+		else
+			ft_drawsquare(vars, x, y, "./img/player1r32.XPM");
+		if (vars.objs[i].sprite == 0)
+			vars.objs[i].sprite = 1;
+		else
+			vars.objs[i].sprite = 0;
+	}
+	else
+	{
+		if (vars.objs[i].sprite == 0)
+			ft_drawsquare(vars, x, y, "./img/player2l32.XPM");
+		else
+			ft_drawsquare(vars, x, y, "./img/player1l32.XPM");
+		if (vars.objs[i].sprite == 0)
+			vars.objs[i].sprite = 1;
+		else
+			vars.objs[i].sprite = 0;
+	}
+}
+
 void	ft_moveplayer(t_vars vars, int move)
 {
 	size_t	i;
@@ -86,7 +115,7 @@ void	ft_moveplayer(t_vars vars, int move)
 		if (ft_isitem(j, i, vars.objs))
 			ft_destroyitem(vars, i, j);
 		ft_isenemi(j, i, vars.objs);
-		ft_drawsquare(vars, i, j, "./img/worker12x16.XPM");
+		ft_nextspritep(vars, i, j, move);
 		*vars.steps += 1;
 		ft_drawsquare(vars, 0, 2, "./img/stone32.XPM");
 		mlx_string_put(vars.mlx, vars.win, 64, 0, 200, ft_itoa(*vars.steps));
