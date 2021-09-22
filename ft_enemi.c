@@ -6,13 +6,13 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 23:14:25 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/21 18:31:48 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/22 17:40:53 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_isenemi(size_t x, size_t y, t_img *objs)
+void	ft_isenemi(size_t x, size_t y, t_img *objs, t_vars vars)
 {
 	size_t	i;
 
@@ -23,12 +23,13 @@ void	ft_isenemi(size_t x, size_t y, t_img *objs)
 		{
 			objs[i].x = 0;
 			objs[i].y = 0;
+			ft_freeall(vars);
 			exit(0);
 		}
 	}
 }
 
-void	ft_isplayer(size_t x, size_t y, t_img *objs)
+void	ft_isplayer(size_t x, size_t y, t_img *objs, t_vars vars)
 {
 	size_t	i;
 
@@ -39,6 +40,7 @@ void	ft_isplayer(size_t x, size_t y, t_img *objs)
 		{
 			objs[i].x = 0;
 			objs[i].y = 0;
+			ft_freeall(vars);
 			exit(0);
 		}
 	}
@@ -162,7 +164,7 @@ void	ft_moveenemi(t_vars vars)
 		ft_drawsquare(vars, i, j, "./img/grass32.XPM");
 		ft_movee(vars, move, &j, &i);
 		ft_nextspritee(vars, i, j, move);
-		ft_isplayer(j, i, vars.objs);
+		ft_isplayer(j, i, vars.objs, vars);
 	}
 	else
 	{

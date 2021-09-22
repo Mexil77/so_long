@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 20:16:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/21 21:02:08 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/22 17:10:04 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_img	*ft_makeobjs(char **map)
 	return (objs);
 }
 
-void	ft_validobjs(t_img *objs)
+void	ft_validobjs(t_img *objs, t_vars vars)
 {
 	size_t	i;
 	size_t	p;
@@ -95,7 +95,7 @@ void	ft_validobjs(t_img *objs)
 	c = 0;
 	e = 0;
 	if (!objs)
-		ft_error("Objetos no se han creado.");
+		ft_error("Objetos no se han creado.", vars);
 	while (objs[++i].type)
 	{
 		if (objs[i].type == 'P')
@@ -106,5 +106,5 @@ void	ft_validobjs(t_img *objs)
 			e++;
 	}
 	if (p != 1 || e != 1 || c == 0)
-		ft_error("No. Elementos incorrecto.");
+		ft_error("No. Elementos incorrecto.", vars);
 }

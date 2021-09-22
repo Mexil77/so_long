@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 19:26:40 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/21 16:43:36 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:19:52 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@ void	ft_move(t_vars vars, int move, size_t *x, size_t *y)
 	vars.map[*y][*x] = 'P';
 }
 
-void	ft_win(void)
+void	ft_win(t_vars vars)
 {
+	ft_freeall(vars);
 	exit(0);
 }
 
@@ -69,7 +70,7 @@ void	ft_destroyitem(t_vars vars, size_t i, size_t j)
 	*vars.score += 1;
 	ft_drawsquare(vars, i, j, "./img/grass32.XPM");
 	ft_drawsquare(vars, 0, 6, "./img/stone32.XPM");
-	mlx_string_put(vars.mlx, vars.win, TILE * 6, 0, 200, ft_itoa(*vars.score));
+	ft_printboards(vars, 2);
 }
 
 void	ft_nextspritep(t_vars vars, size_t x, size_t y, int move)
@@ -114,12 +115,12 @@ void	ft_moveplayer(t_vars vars, int move)
 		ft_move(vars, move, &j, &i);
 		if (ft_isitem(j, i, vars.objs))
 			ft_destroyitem(vars, i, j);
-		ft_isenemi(j, i, vars.objs);
+		ft_isenemi(j, i, vars.objs, vars);
 		ft_nextspritep(vars, i, j, move);
 		*vars.steps += 1;
 		ft_drawsquare(vars, 0, 2, "./img/stone32.XPM");
-		mlx_string_put(vars.mlx, vars.win, 64, 0, 200, ft_itoa(*vars.steps));
+		ft_printboards(vars, 1);
 		if (ft_isexit(j, i, vars.objs))
-			ft_win();
+			ft_win(vars);
 	}
 }

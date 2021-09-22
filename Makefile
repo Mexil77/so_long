@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/13 15:42:35 by emgarcia          #+#    #+#              #
-#    Updated: 2021/09/21 20:18:03 by emgarcia         ###   ########.fr        #
+#    Updated: 2021/09/22 16:55:08 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,6 @@ CFLAGS	= -Wall -Wextra -Werror -Imlx
 RM		= rm -rf
 
 all: ${NAME}
-
-%.o: %.c
-	@${CC} ${CFLAGS} -Imlx -c $< -o $@
 
 ${NAME}: ${OBJS}
 	@make -C libft

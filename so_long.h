@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:47 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/21 20:59:43 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:20:09 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef struct s_vars {
 	t_img	*objs;
 }				t_vars;
 
-void	ft_error(char *str);
+void	ft_error(char *str, t_vars vars);
+void	ft_freeall(t_vars vars);
 char	**ft_makemap(char const *file);
 size_t	ft_getheight(char **map);
 void	ft_drawmap(char **map, t_vars vars);
@@ -54,11 +55,11 @@ size_t	ft_getplayery(t_img *objs);
 size_t	ft_getplayerindex(t_img *objs);
 size_t	ft_isitem(size_t x, size_t y, t_img *objs);
 size_t	ft_isexit(size_t x, size_t y, t_img *objs);
-void	ft_printboards(t_vars vars);
-void	ft_isenemi(size_t x, size_t y, t_img *objs);
+void	ft_printboards(t_vars vars, size_t flag);
+void	ft_isenemi(size_t x, size_t y, t_img *objs, t_vars vars);
 void	ft_moveenemi(t_vars vars);
-void	ft_validmap(char **map);
-void	ft_validobjs(t_img *objs);
+void	ft_validmap(t_vars vars, char **map);
+void	ft_validobjs(t_img *objs, t_vars vars);
 
 void	ft_printmap(char **map);
 void	ft_printobjs(t_img *objs);
