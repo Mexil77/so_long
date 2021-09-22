@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/22 20:16:33 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/22 21:55:49 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,13 @@ int	main(int argc, char const *argv[])
 	vars.objs = ft_makeobjs(vars.map);
 	ft_validobjs(vars.objs, vars);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, w, h, "so_long");
+	vars.win = mlx_new_window(vars.mlx, w, h + 64, "so_long");
 	if (!vars.win)
 		ft_error("Fallo al crear la ventana", vars);
 	ft_drawmap(vars.map, vars);
 	ft_drawobj(vars, vars.objs);
 	ft_inivals(&vars);
-	ft_printboards(vars, 0);
+	ft_printboards(vars, 0, h / TILE);
 	mlx_key_hook(vars.win, ft_keyhook, &vars);
 	mlx_loop_hook(vars.mlx, ft_automove, &vars);
 	mlx_loop(vars.mlx);
