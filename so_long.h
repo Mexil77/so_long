@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:47 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/22 21:49:28 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 20:30:25 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,15 @@ void	ft_isenemi(size_t x, size_t y, t_img *objs, t_vars vars);
 void	ft_moveenemi(t_vars vars);
 void	ft_validmap(t_vars vars, char **map);
 void	ft_validobjs(t_img *objs, t_vars vars);
+void	ft_win(t_vars vars);
 
 void	ft_isenemi(size_t x, size_t y, t_img *objs, t_vars vars);
 void	ft_isplayer(size_t x, size_t y, t_img *objs, t_vars vars);
 size_t	ft_getenemyx(t_img *objs);
 size_t	ft_getenemyy(t_img *objs);
 size_t	ft_getenemyindex(t_img *objs);
+int		ft_automove(t_vars *vars);
+void	ft_drawboard(char **map, t_vars vars);
 
 void	ft_printmap(char **map);
 void	ft_printobjs(t_img *objs);

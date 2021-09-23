@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_boards.c                                        :+:      :+:    :+:   */
+/*   ft_boards_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 22:46:32 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/22 21:55:07 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 20:31:00 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	ft_printboards(t_vars vars, size_t flag, size_t i)
 {

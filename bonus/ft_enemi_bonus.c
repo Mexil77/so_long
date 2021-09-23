@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_enemi.c                                         :+:      :+:    :+:   */
+/*   ft_enemi_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 23:14:25 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/22 20:33:22 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 19:21:53 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	ft_movee(t_vars vars, int move, size_t *x, size_t *y)
 {
@@ -106,4 +106,18 @@ void	ft_moveenemi(t_vars vars)
 		else
 			move = 2;
 	}
+}
+
+int	ft_automove(t_vars *vars)
+{
+	time_t			c;
+	static time_t	ini = 0;
+
+	c = time(NULL);
+	if (c != ini)
+	{
+		ft_moveenemi(*vars);
+		ini = c;
+	}
+	return (0);
 }

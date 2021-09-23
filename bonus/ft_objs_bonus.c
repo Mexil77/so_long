@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_objs.c                                          :+:      :+:    :+:   */
+/*   ft_objs_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 20:16:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/23 16:25:01 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 18:25:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 size_t	ft_countobjs(char **map)
 {
@@ -24,7 +24,8 @@ size_t	ft_countobjs(char **map)
 	while (map[++i])
 	{
 		while (map[i][++j])
-			if (map[i][j] == 'C' || map[i][j] == 'P' || map[i][j] == 'E')
+			if (map[i][j] == 'C' || map[i][j] == 'P' || map[i][j] == 'E' ||
+					map[i][j] == 'X')
 				count++;
 		j = -1;
 	}
@@ -60,6 +61,8 @@ void	ft_dropobjs(char **map, t_img *objs)
 			else if (map[i][j] == 'P')
 				objs[k++] = ft_iniobj(i, j, map[i][j]);
 			else if (map[i][j] == 'E')
+				objs[k++] = ft_iniobj(i, j, map[i][j]);
+			else if (map[i][j] == 'X')
 				objs[k++] = ft_iniobj(i, j, map[i][j]);
 		}
 		j = -1;

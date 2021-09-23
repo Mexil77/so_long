@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/23 16:30:32 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 20:33:32 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	ft_error(char *str, t_vars vars)
 {
@@ -67,14 +67,14 @@ void	ft_inivals(t_vars *vars)
 	vars->steps = calloc(sizeof(size_t), 1);
 	vars->score = calloc(sizeof(size_t), 1);
 	vars->allitems = calloc(sizeof(size_t), 1);
-	if (vars->score && vars->score && vars->allitems)
+	/* if (vars->score && vars->score && vars->allitems)
 	{
 		while (vars->objs[++i].type)
 			if (vars->objs[i].type == 'C')
 				*vars->allitems += 1;
 	}
 	else
-		ft_error("valores iniciales error.", *vars);
+		ft_error("valores iniciales error.", *vars); */
 }
 
 int	main(int argc, char const *argv[])
@@ -92,13 +92,16 @@ int	main(int argc, char const *argv[])
 	vars.objs = ft_makeobjs(vars.map);
 	ft_validobjs(vars.objs, vars);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, w, h, "so_long");
+	vars.win = mlx_new_window(vars.mlx, w, h + 64, "so_long_bonus");
 	if (!vars.win)
 		ft_error("Fallo al crear la ventana", vars);
 	ft_drawmap(vars.map, vars);
+	ft_drawboard(vars.map, vars);
 	ft_drawobj(vars, vars.objs);
 	ft_inivals(&vars);
+	ft_printboards(vars, 0, h / TILE);
 	mlx_key_hook(vars.win, ft_keyhook, &vars);
+	mlx_loop_hook(vars.mlx, ft_automove, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }
