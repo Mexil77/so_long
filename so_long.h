@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:47 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/23 22:01:57 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:41:28 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ size_t	ft_getenemyy(t_img *objs);
 size_t	ft_getenemyindex(t_img *objs);
 int		ft_automove(t_vars *vars);
 void	ft_drawboard(char **map, t_vars vars);
+void	ft_drawall(t_vars vars);
 
 void	ft_printmap(char **map);
 void	ft_printobjs(t_img *objs);

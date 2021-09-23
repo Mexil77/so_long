@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 20:40:43 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/23 19:23:14 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:41:21 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,11 @@ void	ft_drawboard(char **map, t_vars vars)
 		ft_drawsquare(vars, h, i, "./img/ground32.XPM");
 		ft_drawsquare(vars, h + 1, i, "./img/ground32.XPM");
 	}
+}
+
+void	ft_drawall(t_vars vars)
+{
+	ft_drawmap(vars.map, vars);
+	ft_drawboard(vars.map, vars);
+	ft_drawobj(vars, vars.objs);
 }

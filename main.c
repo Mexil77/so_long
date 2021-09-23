@@ -6,19 +6,11 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/23 22:18:09 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 23:02:29 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_error(char *str, t_vars vars)
-{
-	printf("Error\n");
-	printf("%s\n", str);
-	ft_freeall(vars);
-	exit(0);
-}
 
 void	ft_freeall(t_vars vars)
 {
@@ -39,8 +31,11 @@ void	ft_freeall(t_vars vars)
 		free(vars.score);
 	if (vars.steps)
 		free(vars.steps);
-	mlx_clear_window(vars.mlx, vars.win);
-	mlx_destroy_window(vars.mlx, vars.win);
+	if (vars.mlx && vars.win)
+	{
+		mlx_clear_window(vars.mlx, vars.win);
+		mlx_destroy_window(vars.mlx, vars.win);
+	}
 }
 
 int	ft_keyhook(int keycode, t_vars *vars)
@@ -64,11 +59,20 @@ void	ft_inivals(t_vars *vars)
 	size_t	i;
 
 	i = -1;
+	vars->mlx = NULL;
+	vars->win = NULL;
 	vars->steps = calloc(sizeof(size_t), 1);
 	vars->score = calloc(sizeof(size_t), 1);
 	vars->allitems = calloc(sizeof(size_t), 1);
 	if (!vars->score || !vars->score || !vars->allitems)
 		ft_error("valores iniciales error.", *vars);
+}
+
+int	ft_closeredcros(t_vars *vars)
+{
+	ft_freeall(*vars);
+	exit(0);
+	return (0);
 }
 
 int	main(int argc, char const *argv[])
@@ -92,6 +96,7 @@ int	main(int argc, char const *argv[])
 		ft_error("Fallo al crear la ventana", vars);
 	ft_drawmap(vars.map, vars);
 	ft_drawobj(vars, vars.objs);
+	mlx_hook(vars.win, 17, 1L << 17, ft_closeredcros, &vars);
 	mlx_key_hook(vars.win, ft_keyhook, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
