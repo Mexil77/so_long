@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:55:39 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/23 20:21:53 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:12:08 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ size_t	ft_calchighval(int fd)
 
 	h = 0;
 	line = get_next_line(fd);
-	printf("line : %s\n", line);
 	w = ft_strlen(line);
 	if (ft_findchar(line, '\n'))
 		w--;

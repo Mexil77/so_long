@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/13 15:42:35 by emgarcia          #+#    #+#              #
-#    Updated: 2021/09/23 19:10:57 by emgarcia         ###   ########.fr        #
+#    Updated: 2021/09/23 21:38:06 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,6 @@ clean:
 
 fclean: clean
 	@cd libft : make fclean
-	@${RM} ${NAME}
+	@${RM} ${NAME} ${NAME_B} 
 
 re: fclean all

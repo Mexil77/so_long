@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:47 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/23 20:30:25 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:01:57 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_freeall(t_vars vars);
 char	**ft_makemap(char const *file);
 size_t	ft_getheight(char **map);
 void	ft_drawmap(char **map, t_vars vars);
-t_img	*ft_makeobjs(char **map);
+void	ft_makeobjs(t_vars *vars);
 size_t	ft_countobjs(char **map);
 void	ft_drawsquare(t_vars vars, size_t y, size_t x, char *imgname);
 void	ft_drawobj(t_vars vars, t_img *objs);

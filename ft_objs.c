@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 20:16:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/23 16:25:01 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:16:29 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,23 @@ void	ft_dropobjs(char **map, t_img *objs)
 	}
 }
 
-t_img	*ft_makeobjs(char **map)
+void	ft_makeobjs(t_vars *vars)
 {
 	t_img	*objs;
 	size_t	numobjs;
+	size_t	i;
 
-	numobjs = ft_countobjs(map);
+	i = 0;
+	numobjs = ft_countobjs(vars->map);
 	objs = malloc(sizeof(t_img) * (numobjs + 1));
 	if (!objs)
-		return (NULL);
+		ft_error("No se crearon los objetos", *vars);
 	objs[numobjs].type = '\0';
-	ft_dropobjs(map, objs);
-	return (objs);
+	ft_dropobjs(vars->map, objs);
+	while (objs[++i].type)
+		if (objs[i].type == 'C')
+			*vars->allitems += 1;
+	vars->objs = objs;
 }
 
 void	ft_validobjs(t_img *objs, t_vars vars)

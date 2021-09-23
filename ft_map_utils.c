@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:55:39 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/22 20:27:46 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:26:14 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,19 +100,15 @@ char	**ft_makemap(char const *file)
 	int		fd;
 
 	fd = open(file, O_RDWR);
-	printf("1\n");
 	if (fd < 0)
 		return (NULL);
-	printf("2\n");
 	h = ft_calchighval(fd);
 	close (fd);
 	if (!h)
 		return (NULL);
-	printf("3\n");
 	fd = open(file, O_RDWR);
 	if (fd < 0)
 		return (NULL);
-	printf("4\n");
 	map = ft_dropmap(fd, h);
 	close (fd);
 	return (map);
