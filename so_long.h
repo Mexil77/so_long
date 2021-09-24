@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:47 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/24 15:20:33 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/24 15:26:49 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ size_t	ft_valname(const char *str);
 
 void	ft_isenemi(size_t x, size_t y, t_img *objs, t_vars vars);
 void	ft_isplayer(size_t x, size_t y, t_img *objs, t_vars vars);
-size_t	ft_getenemyx(t_img *objs);
-size_t	ft_getenemyy(t_img *objs);
-size_t	ft_getenemyindex(t_img *objs);
 int		ft_automove(t_vars *vars);
 void	ft_drawboard(char **map, t_vars vars);
 void	ft_drawall(t_vars vars);
