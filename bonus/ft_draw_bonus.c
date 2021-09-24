@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 20:40:43 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/23 22:41:21 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/24 15:43:32 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void	ft_drawmap(char **map, t_vars vars)
 		{
 			if (map[i][j] == '1')
 				ft_drawsquare(vars, i, j, "./img/stone32.XPM");
+			else if (map[i][j] != '0' && map[i][j] != 'P'
+					&& map[i][j] != 'E' && map[i][j] != 'C' && map[i][j] != 'X')
+				ft_error("Caracter inadecuado", vars);
 			else
 				ft_drawsquare(vars, i, j, "./img/grass32.XPM");
 		}
