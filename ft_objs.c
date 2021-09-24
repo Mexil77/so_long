@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 20:16:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/23 22:16:29 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/24 13:53:26 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_makeobjs(t_vars *vars)
 	size_t	numobjs;
 	size_t	i;
 
-	i = 0;
+	i = -1;
 	numobjs = ft_countobjs(vars->map);
 	objs = malloc(sizeof(t_img) * (numobjs + 1));
 	if (!objs)
