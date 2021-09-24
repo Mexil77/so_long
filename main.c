@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/24 13:53:48 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/24 15:20:46 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ int	main(int argc, char const *argv[])
 	size_t	w;
 	size_t	h;
 
-	if (argc != 2)
-		exit(0);
 	ft_inivals(&vars);
+	if (argc != 2 || !ft_valname(argv[1]))
+		ft_error("Nombre incorrecto.", vars);
 	vars.map = ft_makemap(argv[1]);
 	ft_validmap(vars, vars.map);
 	w = ft_strlen(vars.map[0]) * TILE;
