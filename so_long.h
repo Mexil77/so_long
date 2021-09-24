@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 14:53:47 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/23 22:41:28 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/24 14:06:51 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_img {
 	size_t	x;
 	size_t	y;
 	size_t	sprite;
+	size_t	automove;
 	char	type;
 }				t_img;
 

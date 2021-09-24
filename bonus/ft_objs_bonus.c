@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 20:16:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/24 13:56:07 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/24 14:09:23 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_img	ft_iniobj(size_t y, size_t x, char type)
 	obj.x = x;
 	obj.y = y;
 	obj.sprite = 0;
+	obj.automove = 0;
 	obj.type = type;
 	return (obj);
 }
